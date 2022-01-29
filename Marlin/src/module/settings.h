@@ -31,10 +31,6 @@
   #include "../HAL/shared/eeprom_api.h"
 #endif
 
-#if ENABLED(BABYSTEP_DISPLAY_TOTAL)
-  #include "../feature/babystep.h"
-#endif
-
 class MarlinSettings {
   public:
     static uint16_t datasize();

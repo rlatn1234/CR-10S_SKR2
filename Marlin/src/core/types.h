@@ -26,6 +26,13 @@
 
 #include "../inc/MarlinConfigPre.h"
 
+class __FlashStringHelper;
+typedef const __FlashStringHelper* FSTR_P;
+#ifndef FPSTR
+  #define FPSTR(S) (reinterpret_cast<FSTR_P>(S))
+#endif
+#define FTOP(S) (reinterpret_cast<const char*>(S))
+
 //
 // Conditional type assignment magic. For example...
 //
@@ -82,7 +89,7 @@ enum AxisEnum : uint8_t {
   #undef _EN_ITEM
 
   // Core also keeps toolhead directions
-  #if ANY(IS_CORE, MARKFORGED_XY, MARKFORGED_YX)
+  #if EITHER(IS_CORE, MARKFORGED_XY)
     , X_HEAD, Y_HEAD, Z_HEAD
   #endif
 
